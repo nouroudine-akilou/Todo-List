@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-tasks"></i> Ma Todo List (N.Akilou)</h1>
+            <div class="header-controls">
+                <button id="themeToggle" class="theme-toggle" title="Switch theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="stats">
+                    <span id="totalTasks">0</span> Tâches | 
+                    <span id="completedTasks">0</span> Terminées
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <div class="add-task-section">
+                <div class="input-group">
+                    <input type="text" id="taskInput" placeholder="Ajouter une nouvelle tâche..." maxlength="100">
+                    
+                    <div class="priority-selector">
+                        <label class="priority-label">propriété : </label>
+                        <div class="priority-options">
+                            <div class="priority-option" data-priority="low">
+                                <i class="fas fa-circle"></i>
+                                <span>Normale</span>
+                            </div>
+                            <div class="priority-option active" data-priority="medium">
+                                <i class="fas fa-circle"></i>
+                                <span>Important</span>
+                            </div>
+                            <div class="priority-option" data-priority="high">
+                                <i class="fas fa-circle"></i>
+                                <span>Urgent</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="addTaskBtn" title="Deliver & Save task">
+                        <i class="fas fa-plus"> Ajouter</i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-list"></i> toutes
+                    </button>
+                    <button class="filter-btn" data-filter="pending">
+                        <i class="fas fa-clock"></i> En cours
+                    </button>
+                    <button class="filter-btn" data-filter="completed">
+                        <i class="fas fa-check"></i> Terminées
+                    </button>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Rechercher des taches...">
+                </div>
+            </div>
+
+            <div class="tasks-container">
+                <div id="tasksList" class="tasks-list">
+                    <!-- Dynamic tasks will be inserted here -->
+                </div>
+                <div id="emptyState" class="empty-state">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>Aucune tâche pour le momment</h3>
+                    <p>Commencez par ajouter une tâche !</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> Modifier la tâche</h3>
+                <button class="close-btn" id="closeModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="editTaskInput" placeholder="Edit task with Style...">
+                
+                <div class="priority-selector">
+                    <label class="priority-label">Propriétés : </label>
+                    <div class="priority-options" id="editPriorityOptions">
+                        <div class="priority-option" data-priority="low">
+                            <i class="fas fa-circle"></i>
+                            <span>Normale</span>
+                        </div>
+                        <div class="priority-option" data-priority="medium">
+                            <i class="fas fa-circle"></i>
+                            <span>Important</span>
+                        </div>
+                        <div class="priority-option" data-priority="high">
+                            <i class="fas fa-circle"></i>
+                            <span>Urgent</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelEdit" class="btn-secondary">Annuler</button>
+                <button id="saveEdit" class="btn-primary">Enregistrer & Livrer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal delete-modal">
+        <div class="modal-content delete-modal-content">
+            <div class="modal-header delete-header">
+                <div class="delete-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3>Supprimer la tâche sélectionnée ?</h3>
+                <button class="close-btn" id="closeDeleteModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body delete-body">
+                <p>Êtes-vous sûr de vouloir supprimer cette tâche ?</p>
+                <div class="task-preview" id="deleteTaskPreview">
+                    <!-- Dynamic task preview will be inserted here -->
+                </div>
+                <div class="warning-note">
+                    <i class="fas fa-info-circle"></i>
+                    Cette action est irréversible.
+                </div>
+            </div>
+            <div class="modal-footer delete-footer">
+                <button id="cancelDelete" class="btn-secondary">
+                    <i class="fas fa-times"></i> Annuler
+                </button>
+                <button id="confirmDelete" class="btn-danger">
+                    <i class="fas fa-trash"></i> Supprimer 
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+            
